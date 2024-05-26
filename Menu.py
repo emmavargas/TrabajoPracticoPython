@@ -1,4 +1,6 @@
 from CargaDatos import CargaDatos
+from Grafos import Grafos
+
 
 
 class Menu:
@@ -8,7 +10,11 @@ class Menu:
             opcion = input("ingrese el excel que desea importar: ")
             if(opcion == "1"):
                 direccion1 = 'C:\\Users\\emman\\PycharmProjects\\TrabajoPractico\\test.xlsx'
-                grafo = CargaDatos(direccion1)
+                datos = CargaDatos(direccion1)
+                datos.cargaDeDatos()
+                grafos = Grafos(datos.nodos)
+                grafos.agregarNodos()
+                grafos.mostrarGraph()
                 n1= input("Ingrese persona 1")
                 n2= input("Ingrese persona 2")
-                grafo.calcularDistanciaAmistadMinima(n1,n2)
+                grafos.calcularDistanciaAmistadMinima(n1,n2)

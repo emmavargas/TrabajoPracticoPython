@@ -1,4 +1,4 @@
-class Nodo:
+class Alumno:
     def __init__(self, nombre):
         self.nombre = nombre
         self.lista = []
