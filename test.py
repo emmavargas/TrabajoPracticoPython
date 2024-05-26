@@ -1,3 +1,3 @@
-from menu import Menu
+from Menu import Menu
 
 iniciar = Menu()

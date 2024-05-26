@@ -1,4 +1,4 @@
-from main import CargaDatos
+from CargaDatos import CargaDatos
 
 
 class Menu:
