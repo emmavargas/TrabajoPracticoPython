@@ -1,4 +1,5 @@
 import tkinter as tk
+import openpyxl
 from PIL import Image, ImageTk
 from CargaDatos import CargaDatos
 from Grafos import Grafos
@@ -6,7 +7,7 @@ from Grafos import Grafos
 
 class MenuGrafico:
     def __init__(self):
-        self.direccion1 = 'C:\\Users\\emman\\PycharmProjects\\TrabajoPractico\\test.xlsx'
+        self.direccion1 = 'test.xlsx'
         # Crear ventana principal
         root = tk.Tk()
         root.title("Aplicacion")
@@ -35,7 +36,7 @@ class MenuGrafico:
         entradaAlu2.pack(padx=5, pady=5)
         boton2 = tk.Button(self.marco2, text="Calcular Distancia Amistad", command=lambda: self.mostrarRelacion(alu1, alu2, self.grafos))
         boton2.pack(anchor="center", padx=5, pady=5)
-        self.relacion = tk.Label(self.marco2, text="Nivel de Relacion: ")
+        self.relacion = tk.Label(self.marco2, text="La distancia de relacion es: ")
         self.relacion.pack(anchor="center", padx=5, pady=5)
         self.marco2.propagate(False)
 
@@ -74,7 +75,7 @@ class MenuGrafico:
             label.image = img_tk
             label.pack(expand=True, fill="both")
 
-        if opcion == 2:
+        elif opcion == 2:
             #Cargamos los datos, generamos el grafo
             datos = CargaDatos(self.direccion1, 'Hoja 2')
             datos.cargaDeDatos()
@@ -92,12 +93,12 @@ class MenuGrafico:
             label.image = img_tk
             label.pack(expand=True, fill="both")
 
-    def mostrarRelacion(self, alu1, alu2, datos):
+    def mostrarRelacion(self, alu1, alu2, grafo):
         for widget in self.marco4.winfo_children():
             widget.destroy()
         alu1String = alu1.get()
         alu2String = alu2.get()
-        datos.graficarDistanciaMinima(alu1String, alu2String)
+        grafo.graficarDistanciaMinima(alu1String, alu2String)
         # Cargar la imagen y obtener sus dimensiones
         rutaImagen = 'relacion.png'
         img1 = Image.open(rutaImagen)
@@ -106,6 +107,6 @@ class MenuGrafico:
         label = tk.Label(self.marco4, image=img1Tk)
         label.image = img1Tk
         label.pack(expand=True, fill="both")
-        relacionTexto = datos.calcularDistanciaMinima(alu1String,alu2String)
-        self.relacion.config(text="Nivel de Relacion: " + relacionTexto)
+        relacionTexto = grafo.calcularDistanciaMinima(alu1String,alu2String)
+        self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
 

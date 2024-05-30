@@ -63,7 +63,7 @@ class Grafos:
         alu2Mayus = n2.upper()
         if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus):
             nivelRelacion = nx.shortest_path_length(self.g, alu1Mayus, alu2Mayus, weight='weight')
-            return "La distancia de Amistad es " + str(nivelRelacion)
+            return "" + str(nivelRelacion)
         elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus, alu2Mayus):
             messagebox.showinfo(message="No existe camino posible", title="Error")
             return ""
