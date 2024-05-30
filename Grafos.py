@@ -1,6 +1,5 @@
 from itertools import pairwise
 from tkinter import messagebox
-
 import networkx as nx
 from matplotlib import pyplot as plt
 
@@ -46,15 +45,6 @@ class Grafos:
             labels2 = nx.get_edge_attributes(subgrafo, 'weight')
             nx.draw(subgrafo, layout, with_labels=True, node_color='#FF5733', node_size=3000, font_size=10)
             nx.draw_networkx_edge_labels(subgrafo, layout, edge_labels=labels2)
-            plt.savefig('relacion.png')
-            plt.close()
-        elif  self.g.has_node(alu1Mayus) and  self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus, alu2Mayus):
-            grafoAux = self.g.copy()
-            grafoAux.clear()
-            layout = nx.planar_layout(grafoAux)
-            labels2 = nx.get_edge_attributes(grafoAux, 'weight')
-            nx.draw(grafoAux, layout, with_labels=True, node_color='#FF5733', node_size=3000, font_size=10)
-            nx.draw_networkx_edge_labels(grafoAux, layout, edge_labels=labels2)
             plt.savefig('relacion.png')
             plt.close()
         else:
