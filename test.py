@@ -1,3 +1,3 @@
-from Menu import Menu
-
-iniciar = Menu()
+#from Menu import Menu
+from MenuGrafico import MenuGrafico
+iniciar = MenuGrafico()

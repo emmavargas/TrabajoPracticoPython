@@ -20,7 +20,7 @@ class Menu:
                 alu2= input("Ingrese Alumno 2")
                 grafos.calcularDistanciaAmistadMinima(alu1,alu2)
 
-            if(opcion == "2"):
+            elif(opcion == "2"):
                 hoja = 'Hoja 2'
                 datos = CargaDatos(direccion1,hoja)
                 datos.cargaDeDatos()
