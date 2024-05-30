@@ -14,16 +14,16 @@ class Grafos:
         lista = list(self.datos.keys())
 
         for key in lista:
-            nombreMayusNodo = self.datos[key].nombre.upper()
+            nombreMayusNodo = self.datos[key].nombre
             self.g.add_node(nombreMayusNodo)
             for i in self.datos[key].lista:
-                nombreMayusNodoFinal = i[0].upper()
+                nombreMayusNodoFinal = i[0]
                 self.g.add_node(nombreMayusNodoFinal)
-                if i[1]=="Amigo Personal":
+                if i[1]=="AMIGO PERSONAL":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=3)
-                elif i[1]=="Conocido":
+                elif i[1]=="CONOCIDO":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=2)
-                elif i[1]=="Compañero":
+                elif i[1]=="COMPAÑERO":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=1)
     def mostrarGraph(self):
         layout = nx.planar_layout(self.g)

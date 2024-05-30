@@ -5,6 +5,7 @@ class CargaDatos:
     def __init__(self, archivo, hoja):
 
         self.dataFrame = pd.read_excel(archivo, sheet_name=hoja, header=0)
+        self.dataFrame = self.dataFrame.apply(lambda x: x.str.upper())
         self.alumnos = {}
 
 
