@@ -27,6 +27,7 @@ class MenuGrafico:
         boton1.pack(anchor="center", padx=5, pady=1)
         self.marco1.propagate(False)
         #emma
+        #testeo de ramas
 
         self.marco2 = tk.Frame(root, relief="ridge",borderwidth=2)
         alu1 = tk.StringVar()
