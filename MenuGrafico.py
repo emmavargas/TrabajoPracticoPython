@@ -26,7 +26,7 @@ class MenuGrafico:
         boton1 = tk.Button(self.marco1, text="Hoja 2", command=lambda: self.mostrar(2),width=10)
         boton1.pack(anchor="center", padx=5, pady=1)
         self.marco1.propagate(False)
-
+        #emma
 
         self.marco2 = tk.Frame(root, relief="ridge",borderwidth=2)
         alu1 = tk.StringVar()
