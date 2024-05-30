@@ -8,9 +8,8 @@ class CargaDatos:
         self.alumnos = {}
 
 
-        # opcion 1
-        # Creamos objetos nodo, guardamos en un diccionario y luego lo pasamos a los grafos
-
+    # opcion 1
+    # Creamos objetos nodo, guardamos en un diccionario y luego lo pasamos a los grafos
     def cargaDeDatos(self):
         #iterrows metodo de pandas, itera la fila de los dataFrame en dos valores (indiceLineaa, Linea)
         for indice, fila in self.dataFrame.iterrows():

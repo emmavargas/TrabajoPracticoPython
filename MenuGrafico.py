@@ -10,7 +10,7 @@ class MenuGrafico:
         # Crear ventana principal
         root = tk.Tk()
         root.title("Aplicacion")
-        root.geometry("1000x600")
+        root.geometry("1200x700")
         root.resizable(False, False)
 
         root.grid_rowconfigure(0, weight=1)
