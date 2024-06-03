@@ -1,5 +1,4 @@
 from itertools import pairwise
-from tkinter import messagebox
 import networkx as nx
 from matplotlib import pyplot as plt
 
@@ -18,12 +17,13 @@ class Grafos:
             for i in self.datos[key].lista:
                 nombreMayusNodoFinal = i[0]
                 self.g.add_node(nombreMayusNodoFinal)
-                if i[1]=="AMIGO PERSONAL":
+                if i[1] == "AMIGO PERSONAL":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=3)
-                elif i[1]=="CONOCIDO":
+                elif i[1] == "CONOCIDO":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=2)
-                elif i[1]=="COMPAÑERO":
+                elif i[1] == "COMPAÑERO":
                     self.g.add_edge(nombreMayusNodo, nombreMayusNodoFinal, weight=1)
+
     def mostrarGraph(self):
         layout = nx.planar_layout(self.g)
         labels2 = nx.get_edge_attributes(self.g, 'weight')
@@ -36,9 +36,9 @@ class Grafos:
         plt.close()
 
     def graficarDistanciaMinima(self, n1, n2):
-        alu1Mayus =n1.upper()
-        alu2Mayus =n2.upper()
-        if  self.g.has_node(alu1Mayus) and  self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus):
+        alu1Mayus = n1.upper()
+        alu2Mayus = n2.upper()
+        if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus):
             camino = nx.dijkstra_path(self.g, alu1Mayus, alu2Mayus, weight='weight')
             subgrafo = self.g.edge_subgraph(pairwise(camino)).copy()
             layout = nx.planar_layout(self.g)
@@ -57,20 +57,14 @@ class Grafos:
             plt.savefig('relacion.png')
             plt.close()
 
-
-    def calcularDistanciaMinima(self,n1,n2):
+    def calcularDistanciaMinima(self, n1, n2):
         alu1Mayus = n1.upper()
         alu2Mayus = n2.upper()
         if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus):
             nivelRelacion = nx.shortest_path_length(self.g, alu1Mayus, alu2Mayus, weight='weight')
             return "" + str(nivelRelacion)
-        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus, alu2Mayus):
-            messagebox.showinfo(message="No existe camino posible", title="Error")
-            return ""
+        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus,
+                                                                                           alu2Mayus):
+            return 1
         else:
-            messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
-            return ""
-
-
-
-
+            return 2
