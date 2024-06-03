@@ -5,4 +5,3 @@ class Alumno:
 
     def agregar(self, dato):
         self.lista.append(dato)
-

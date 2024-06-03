@@ -1,13 +1,13 @@
 import pandas as pd
 from Alumno import Alumno
 
+
 class CargaDatos:
     def __init__(self, archivo, hoja):
 
         self.dataFrame = pd.read_excel(archivo, sheet_name=hoja, header=0)
         self.dataFrame = self.dataFrame.apply(lambda x: x.str.upper())
         self.alumnos = {}
-
 
     # opcion 1
     # Creamos objetos nodo, guardamos en un diccionario y luego lo pasamos a los grafos
@@ -63,8 +63,3 @@ class CargaDatos:
                     self.nodos[fila[0]] = nodo          
                 
         """
-
-
-
-
-
