@@ -105,9 +105,11 @@ class MenuGrafico:
             relacionTexto = grafo.calcularDistanciaMinima(alu1String, alu2String)
             if relacionTexto == 1:
                 self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
                 messagebox.showinfo(message="No existe camino posible", title="Error")
             elif relacionTexto == 2:
                 self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
                 messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
             else:
                 self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
