@@ -38,10 +38,9 @@ class MenuGrafico:
         entradaAlu2 = tk.Entry(self.marco2, textvariable=alu2)
         entradaAlu2.pack(padx=5, pady=5)
         self.boton2 = tk.Button(self.marco2, text="Calcular Distancia Amistad", command=lambda: self.mostrarRelacion(alu1, alu2, self.grafos))
-        self.boton2.pack(anchor="center", padx=5, pady=5)
         self.boton2.config(state=tk.DISABLED)
+        self.boton2.pack(anchor="center", padx=5, pady=5)
         self.relacion = tk.Label(self.marco2, text="La distancia de relacion es: ")
-        self.relacion.pack(anchor="center", padx=5, pady=5)
         self.marco2.propagate(False)
 
         self.marco3 = tk.Frame(root, relief="ridge", borderwidth=2)
@@ -60,6 +59,7 @@ class MenuGrafico:
     def mostrar(self, opcion):
         self.limpiarMarcos(self.marco3)
         self.limpiarMarcos(self.marco4)
+        self.relacion.pack_forget()
         if opcion == 1:
             #Cargamos los datos, generamos el grafo
             datos = CargaDatos(self.direccion1, 'Hoja 1')
@@ -88,26 +88,31 @@ class MenuGrafico:
         self.boton2.config(state=tk.NORMAL)
 
     def mostrarRelacion(self, alu1, alu2, grafo):
-        self.limpiarMarcos(self.marco4)
-
-        self.relacion.config(text="La distancia de relacion es: ")
-        alu1String = alu1.get()
-        alu2String = alu2.get()
-        grafo.graficarDistanciaMinima(alu1String, alu2String)
-
-        # Cargar la imagen y obtener sus dimensiones
-        rutaImagen = 'relacion.png'
-        self.mostrarImagen(rutaImagen, self.marco4)
-
-        relacionTexto = grafo.calcularDistanciaMinima(alu1String, alu2String)
-        if relacionTexto == 1:
+        if self.grafos is None:
             self.limpiarMarcos(self.marco4)
-            messagebox.showinfo(message="No existe camino posible", title="Error")
-        elif relacionTexto == 2:
-            self.limpiarMarcos(self.marco4)
-            messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
+            messagebox.showinfo(message="No se ha cargado ningun Excel", title="Error")
         else:
-            self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
+            self.limpiarMarcos(self.marco4)
+            self.relacion.config(text="La distancia de relacion es: ")
+            alu1String = alu1.get()
+            alu2String = alu2.get()
+            grafo.graficarDistanciaMinima(alu1String, alu2String)
+
+            # Cargar la imagen y obtener sus dimensiones
+            rutaImagen = 'relacion.png'
+            self.mostrarImagen(rutaImagen, self.marco4)
+
+            relacionTexto = grafo.calcularDistanciaMinima(alu1String, alu2String)
+            if relacionTexto == 1:
+                self.limpiarMarcos(self.marco4)
+                messagebox.showinfo(message="No existe camino posible", title="Error")
+            elif relacionTexto == 2:
+                self.limpiarMarcos(self.marco4)
+                messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
+            else:
+                self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
+                self.relacion.pack(anchor="center", padx=5, pady=5)
+
 
     @staticmethod
     def mostrarImagen(rutaImagen, marco):
