@@ -9,7 +9,6 @@ class MenuGrafico:
     def __init__(self):
         self.grafos = None
         self.direccion1 = 'test.xlsx'
-        self.condicionMostrarRelacion = False
 
         # Crear ventana principal
         root = tk.Tk()
@@ -88,6 +87,7 @@ class MenuGrafico:
         self.boton2.config(state=tk.NORMAL)
 
     def mostrarRelacion(self, alu1, alu2, grafo):
+        #nunca entra hay que revisar para que sea la condicion del disable boton
         if self.grafos is None:
             self.limpiarMarcos(self.marco4)
             messagebox.showinfo(message="No se ha cargado ningun Excel", title="Error")
