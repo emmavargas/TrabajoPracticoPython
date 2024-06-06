@@ -21,6 +21,7 @@ class MenuGraficoNuevo:
         root.grid_rowconfigure(1, weight=3)
         root.grid_columnconfigure(0, weight=3)
         root.grid_columnconfigure(1, weight=3)
+
         self.marco1 = ctk.CTkFrame(root, corner_radius=10)
         self.marcobotones = ctk.CTkFrame(self.marco1, corner_radius=10)
         infoexcel = ctk.CTkLabel(self.marcobotones, text="Seleccione una hoja de Excel para cargar", font=ctk.CTkFont('Arial', 16))
