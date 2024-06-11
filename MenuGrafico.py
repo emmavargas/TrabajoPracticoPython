@@ -78,7 +78,6 @@ class MenuGrafico:
             self.grafos = Grafos(datos.alumnos)
             self.grafos.agregarNodos()
             self.grafos.mostrarGraph()
-
             rutaImagen = 'grafo.png'
 
             # Cargamos la imagen y le ponemos la dimension de su marco
@@ -94,8 +93,8 @@ class MenuGrafico:
         else:
             self.limpiarMarcos(self.marco4)
             self.relacion.config(text="La distancia de relacion es: ")
-            alu1String = alu1.get()
-            alu2String = alu2.get()
+            alu1String = alu1.get().capitalize()
+            alu2String = alu2.get().capitalize()
             grafo.graficarDistanciaMinima(alu1String, alu2String)
 
             # Cargar la imagen y obtener sus dimensiones
@@ -108,6 +107,10 @@ class MenuGrafico:
                 self.relacion.pack_forget()
                 messagebox.showinfo(message="No existe camino posible", title="Error")
             elif relacionTexto == 2:
+                self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
+                messagebox.showinfo(message="Se ingreso el mismo usuario dos veces", title="Error")
+            elif relacionTexto == 3:
                 self.limpiarMarcos(self.marco4)
                 self.relacion.pack_forget()
                 messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")

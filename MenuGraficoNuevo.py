@@ -64,6 +64,7 @@ class MenuGraficoNuevo:
         self.limpiarMarcos(self.marco3)
         self.limpiarMarcos(self.marco4)
         self.relacion.pack_forget()
+
         if opcion == 1:
             # Cargamos los datos, generamos el grafo
             datos = CargaDatos(self.direccion1, 'Hoja 1')
@@ -83,7 +84,6 @@ class MenuGraficoNuevo:
             self.grafos = Grafos(datos.alumnos)
             self.grafos.agregarNodos()
             self.grafos.mostrarGraph()
-
             rutaImagen = 'grafo.png'
 
             # Cargamos la imagen y le ponemos la dimension de su marco
@@ -99,8 +99,8 @@ class MenuGraficoNuevo:
         else:
             self.limpiarMarcos(self.marco4)
             self.relacion.configure(text="La distancia de relacion es: ")
-            alu1String = alu1.get()
-            alu2String = alu2.get()
+            alu1String = alu1.get().capitalize()
+            alu2String = alu2.get().capitalize()
             grafo.graficarDistanciaMinima(alu1String, alu2String)
 
             # Cargar la imagen y obtener sus dimensiones
@@ -115,10 +115,19 @@ class MenuGraficoNuevo:
             elif relacionTexto == 2:
                 self.limpiarMarcos(self.marco4)
                 self.relacion.pack_forget()
-                messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
-            else:
-                self.relacion.configure(text="La distancia de relacion es: " + relacionTexto)
-                self.relacion.pack(anchor="center", padx=5, pady=5)
+                messagebox.showinfo(message="Se ingreso el mismo alumno dos veces", title="Escribi bien pelotudo, atte Agustin ")
+            elif relacionTexto == 3:
+                self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
+                messagebox.showinfo(message="No existe el alumno: " + alu1String, title="Error")
+            elif relacionTexto == 4:
+                self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
+                messagebox.showinfo(message="No existe el alumno: " + alu2String, title="Error")
+            elif relacionTexto == 5:
+                self.limpiarMarcos(self.marco4)
+                self.relacion.pack_forget()
+                messagebox.showinfo(message="No existe ninguno de los alumnos", title="Error")
 
     @staticmethod
     def mostrarImagen(rutaImagen, marco):

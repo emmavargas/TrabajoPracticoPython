@@ -2,7 +2,6 @@ from itertools import pairwise
 import networkx as nx
 from matplotlib import pyplot as plt
 
-
 class Grafos:
     def __init__(self, datos):
         self.g = nx.Graph()
@@ -32,21 +31,26 @@ class Grafos:
             camino = nx.dijkstra_path(self.g, alu1Mayus, alu2Mayus, weight='weight')
             subgrafo = self.g.edge_subgraph(pairwise(camino)).copy()
             self.generarGrafico(subgrafo, 'relacion.png')
-        #else:
-        #    grafoAux = self.g.copy()
-        #    grafoAux.clear()
 
     def calcularDistanciaMinima(self, n1, n2):
         alu1Mayus = n1.upper()
         alu2Mayus = n2.upper()
-        if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus):
+        if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus) and alu1Mayus != alu2Mayus:
             nivelRelacion = nx.shortest_path_length(self.g, alu1Mayus, alu2Mayus, weight='weight')
             return "" + str(nivelRelacion)  #retorno correcto
-        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus,
-                                                                                           alu2Mayus):
+        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus,                                                                          alu2Mayus):
             return 1  #significa que no existe camino posible
+        elif alu1Mayus == alu2Mayus and self.g.has_node(alu1Mayus):
+            return 2
         else:
-            return 2  #significa que uno o ambos nodos no existen en el grafo
+            if(self.g.has_node(alu2Mayus) and not self.g.has_node(alu1Mayus)):
+                return 3
+            elif(self.g.has_node(alu1Mayus) and not self.g.has_node(alu2Mayus)):
+                return 4
+            elif(not self.g.has_node(alu1Mayus) and not self.g.has_node(alu2Mayus)):
+                return 5
+            #return 3  #significa que uno o ambos nodos no existen en el grafo
+
 
     @staticmethod
     def generarGrafico(g, nombrearchivo):

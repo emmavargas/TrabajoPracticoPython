@@ -38,28 +38,3 @@ class CargaDatos:
                 alu1 = Alumno(fila['Relacion'])
                 alu1.agregar([fila['Alumno'], fila['Tipo']])
                 self.alumnos[alu1.nombre] = alu1
-
-    #Opcion 2
-    """def cargaDeDatos(self):
-        self.alumnos = {}
-
-        for i, fila in self.df.iterrows():
-            if fila['Nombre'] in self.nodos.keys():
-                self.alumnos.get(fila['Nombre']).agregar([fila['Relacion'], fila[Tipo]])
-            else:
-                alumno = Alumno(fila['Nombre'])
-                alumno.agregar([fila['Relacion?], fila['Tipo']])
-                self.alumnos[fila[alumno.nombre]] = alumno
-                
-        def cargaDeDatos(self):
-            self.nodos = {}
-    
-            for i, fila in self.df.iterrows():
-                if fila[0] in self.nodos.keys():
-                    self.nodos.get(fila[0]).agregar([fila[1], fila[2]])
-                else:
-                    nodo = Alumno(fila[0])
-                    nodo.agregar([fila[1], fila[2]])
-                    self.nodos[fila[0]] = nodo          
-                
-        """
