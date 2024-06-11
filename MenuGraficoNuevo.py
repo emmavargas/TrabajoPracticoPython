@@ -115,7 +115,7 @@ class MenuGraficoNuevo:
             elif relacionTexto == 2:
                 self.limpiarMarcos(self.marco4)
                 self.relacion.pack_forget()
-                messagebox.showinfo(message="Se ingreso el mismo alumno dos veces", title="Escribi bien pelotudo, atte Agustin ")
+                messagebox.showinfo(message="Se ingreso el mismo alumno dos veces", title="Error")
             elif relacionTexto == 3:
                 self.limpiarMarcos(self.marco4)
                 self.relacion.pack_forget()
