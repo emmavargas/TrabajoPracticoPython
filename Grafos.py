@@ -38,7 +38,7 @@ class Grafos:
         if self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and nx.has_path(self.g, alu1Mayus, alu2Mayus) and alu1Mayus != alu2Mayus:
             nivelRelacion = nx.shortest_path_length(self.g, alu1Mayus, alu2Mayus, weight='weight')
             return "" + str(nivelRelacion)  #retorno correcto
-        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus,                                                                          alu2Mayus):
+        elif self.g.has_node(alu1Mayus) and self.g.has_node(alu2Mayus) and not nx.has_path(self.g, alu1Mayus,alu2Mayus):
             return 1  #significa que no existe camino posible
         elif alu1Mayus == alu2Mayus and self.g.has_node(alu1Mayus):
             return 2

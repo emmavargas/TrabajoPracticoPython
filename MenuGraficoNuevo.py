@@ -15,7 +15,7 @@ class MenuGraficoNuevo:
         ctk.set_appearance_mode("Dark")
         root = ctk.CTk()
         root.title("TP POO2")
-        root.geometry("800x600")
+        root.geometry("1200x700")
         root.resizable(False, False)
         root.grid_rowconfigure(0, weight=1)
         root.grid_rowconfigure(1, weight=3)
@@ -128,6 +128,10 @@ class MenuGraficoNuevo:
                 self.limpiarMarcos(self.marco4)
                 self.relacion.pack_forget()
                 messagebox.showinfo(message="No existe ninguno de los alumnos", title="Error")
+            else:
+                self.relacion.configure(text="La distancia de relacion es: " +relacionTexto)
+                self.relacion.pack()
+
 
     @staticmethod
     def mostrarImagen(rutaImagen, marco):
