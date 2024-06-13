@@ -87,36 +87,32 @@ class MenuGrafico:
 
     def mostrarRelacion(self, alu1, alu2, grafo):
         #nunca entra hay que revisar para que sea la condicion del disable boton
-        if self.grafos is None:
+        self.limpiarMarcos(self.marco4)
+        self.relacion.config(text="La distancia de relacion es: ")
+        alu1String = alu1.get().capitalize()
+        alu2String = alu2.get().capitalize()
+        grafo.graficarDistanciaMinima(alu1String, alu2String)
+
+        # Cargar la imagen y obtener sus dimensiones
+        rutaImagen = 'relacion.png'
+        self.mostrarImagen(rutaImagen, self.marco4)
+
+        relacionTexto = grafo.calcularDistanciaMinima(alu1String, alu2String)
+        if relacionTexto == 1:
             self.limpiarMarcos(self.marco4)
-            messagebox.showinfo(message="No se ha cargado ningun Excel", title="Error")
+            self.relacion.pack_forget()
+            messagebox.showinfo(message="No existe camino posible", title="Error")
+        elif relacionTexto == 2:
+            self.limpiarMarcos(self.marco4)
+            self.relacion.pack_forget()
+            messagebox.showinfo(message="Se ingreso el mismo usuario dos veces", title="Error")
+        elif relacionTexto == 3:
+            self.limpiarMarcos(self.marco4)
+            self.relacion.pack_forget()
+            messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
         else:
-            self.limpiarMarcos(self.marco4)
-            self.relacion.config(text="La distancia de relacion es: ")
-            alu1String = alu1.get().capitalize()
-            alu2String = alu2.get().capitalize()
-            grafo.graficarDistanciaMinima(alu1String, alu2String)
-
-            # Cargar la imagen y obtener sus dimensiones
-            rutaImagen = 'relacion.png'
-            self.mostrarImagen(rutaImagen, self.marco4)
-
-            relacionTexto = grafo.calcularDistanciaMinima(alu1String, alu2String)
-            if relacionTexto == 1:
-                self.limpiarMarcos(self.marco4)
-                self.relacion.pack_forget()
-                messagebox.showinfo(message="No existe camino posible", title="Error")
-            elif relacionTexto == 2:
-                self.limpiarMarcos(self.marco4)
-                self.relacion.pack_forget()
-                messagebox.showinfo(message="Se ingreso el mismo usuario dos veces", title="Error")
-            elif relacionTexto == 3:
-                self.limpiarMarcos(self.marco4)
-                self.relacion.pack_forget()
-                messagebox.showinfo(message="Alguno de los nodos no existe en el grafo.", title="Error")
-            else:
-                self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
-                self.relacion.pack(anchor="center", padx=5, pady=5)
+            self.relacion.config(text="La distancia de relacion es: " + relacionTexto)
+            self.relacion.pack(anchor="center", padx=5, pady=5)
 
 
     @staticmethod

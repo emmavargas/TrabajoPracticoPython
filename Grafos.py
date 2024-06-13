@@ -31,6 +31,8 @@ class Grafos:
             camino = nx.dijkstra_path(self.g, alu1Mayus, alu2Mayus, weight='weight')
             subgrafo = self.g.edge_subgraph(pairwise(camino)).copy()
             self.generarGrafico(subgrafo, 'relacion.png')
+        else:
+            self.generarGrafico(self.g, 'relacion.png')
 
     def calcularDistanciaMinima(self, n1, n2):
         alu1Mayus = n1.upper()
